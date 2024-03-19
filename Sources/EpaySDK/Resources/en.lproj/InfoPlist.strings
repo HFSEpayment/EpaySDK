@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  EpaySDK
+
+  Created by a1pamys on 3/25/20.
+  Copyright © 2020 Алпамыс. All rights reserved.
+*/
+
+NSCameraUsageDescription = "Epay asks you to provide access to your camera. Card info will not be shared without your permission.";

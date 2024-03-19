@@ -1,0 +1,7 @@
+
+framework module EpaySDK {
+    umbrella header "EpaySDK.h"
+
+    export *
+    module * { export * }
+}

@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  EpaySDK
+
+  Created by a1pamys on 3/25/20.
+  Copyright © 2020 Алпамыс. All rights reserved.
+*/
+
+NSCameraUsageDescription = "Epay сізден камера қолдануға рұқсат сұрап жатыр. Карта деректері сіздің рұқсатынсыз берілмейді.";
