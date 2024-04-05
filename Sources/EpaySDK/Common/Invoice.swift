@@ -27,6 +27,9 @@ public struct Invoice {
     let sender: CardInfo?
     let receiver: CardInfo?
     var masterPass: MasterPassData?
+    var email: String?
+    var phone: String?
+    var cardSave: Bool?
 
     public init(
         id: String,
@@ -43,7 +46,10 @@ public struct Invoice {
         amountEditable: Bool = false,
         sender: CardInfo? = nil,
         receiver: CardInfo? = nil,
-        masterPass: MasterPassData? = nil
+        masterPass: MasterPassData? = nil,
+        email: String? = nil,
+        phone: String? = nil,
+        cardSave: Bool? = nil
     ) {
         self.id = id
         self.amount = amount
@@ -60,6 +66,9 @@ public struct Invoice {
         self.sender = sender
         self.receiver = receiver
         self.masterPass = masterPass
+        self.email = email
+        self.phone = phone
+        self.cardSave = cardSave
     }
 }
 

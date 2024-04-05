@@ -311,6 +311,11 @@ extension MainViewController: UITableViewDataSource {
         if paymentModel.invoice.isMasterPass {
             cell.masterPassData = paymentModel.invoice.masterPass
         }
+        
+        if (paymentModel.invoice.email != nil) || (paymentModel.invoice.phone != nil){
+            cell.preEmailandPhone(invoice: paymentModel.invoice)
+        }
+        
         return cell
     }
 }

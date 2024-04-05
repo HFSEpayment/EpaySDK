@@ -78,6 +78,7 @@ class PaymentInfoTableViewCell: UITableViewCell {
             qrPaymentView.colorScheme = colorScheme
             halykIdPaymentView.colorScheme = colorScheme
             applePayPaymentView.colorScheme = colorScheme
+            installmentPaymentView.colorScheme = colorScheme
         }
     }
     
@@ -96,12 +97,13 @@ class PaymentInfoTableViewCell: UITableViewCell {
             installmentPaymentView.isHidden = paymentType != .installment
         }
     }
-
+    
     var qrImage: UIImage? {
         didSet {
             qrPaymentView.setQR(image: qrImage)
         }
     }
+    
     
     weak var delegate: PaymentInfoTableViewCellDelegate?
     
@@ -136,6 +138,10 @@ class PaymentInfoTableViewCell: UITableViewCell {
 
     func set(card: HomeBankCard?, isCardListEmpty: Bool) {
         halykIdPaymentView.set(card: card, isCardListEmpty: isCardListEmpty)
+    }
+    
+    func preEmailandPhone (invoice: Invoice?) {
+        creditCardPaymentView.preEmailandPhone(invoice: invoice)
     }
 
     // MARK: - Private methods

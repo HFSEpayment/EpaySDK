@@ -18,6 +18,10 @@ class InstallmentPaymentView: UIView {
         }
     }
     
+    var colorScheme: PublicProfileResponseBody.Assets.ColorScheme? {
+        didSet { setCustomStyles() }
+    }
+    
     var months: [Int] = [] {
         didSet {
             segmentedControl.itemTitles =  months.map { "\($0)" }
@@ -34,17 +38,26 @@ class InstallmentPaymentView: UIView {
         }
     }
     
+    private func setCustomStyles() {
+        
+        if let buttonsColor = colorScheme?.buttonsColor {
+            installmentButton.backgroundColor = buttonsColor
+            cancelButton.layer.borderColor = buttonsColor.cgColor
+            cancelButton.setTitleColor(buttonsColor, for: .normal)
+        }
+    
+        if let textColor = colorScheme?.textColor {
+            amountLabel.textColor = textColor
+            installmentButton.setTitleColor(textColor, for: .normal)
+        }
+    }
+    
     var overpayment: Double = 0
     
     var showQR: Bool = true {
         didSet {
-            if showQR {
-                qrView.isHidden = false
-                installmentButton.isHidden = true
-            } else {
-                qrView.isHidden = true
-                installmentButton.isHidden = false
-            }
+            qrView.isHidden = false
+            installmentButton.isHidden = false
         }
     }
     
@@ -74,7 +87,7 @@ class InstallmentPaymentView: UIView {
                 comment: ""
             ),
             attributes: [
-                NSAttributedString.Key.foregroundColor : UIColor.white,
+                NSAttributedString.Key.foregroundColor : colorScheme?.bgGradientParams.color1 ?? UIColor.white,
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)
             ]
         )
@@ -117,14 +130,12 @@ class InstallmentPaymentView: UIView {
     private lazy var installmentButton: UIButton = {
         let button = UIButton()
         button.tag = 1
-        button.layer.cornerRadius = 12
-        button.layer.cornerRadius = 12
+        button.layer.cornerRadius = 3
+        button.layer.cornerRadius = 3
         button.setAttributedTitle(
             installmentButtonAttributedTitle,
             for: .normal
         )
-        
-        button.backgroundColor = UIColor(hexString: "#2AA65C")
         
         let colorOne = UIColor(hexString: "#2AA65C").cgColor
         let colorTwo = UIColor(hexString: "#00805F").cgColor
@@ -132,6 +143,25 @@ class InstallmentPaymentView: UIView {
         
         button.addTarget(self, action: #selector(didTapMakeInstallmentButton), for: .touchUpInside)
         return button
+    }()
+    
+    private lazy var cancelButton: UIButton = {
+        let string = NSLocalizedString(
+            Constants.Localizable.cancel,
+            tableName: Constants.Localizable.tableName,
+            bundle: Bundle.module,
+            comment: ""
+        )
+        let attributedString = NSAttributedString(
+            string: string,
+            attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]
+        )
+        let b = UIButton()
+        b.layer.cornerRadius = 3
+        b.layer.borderWidth = 1
+        b.setAttributedTitle(attributedString, for: .normal)
+        b.addTarget(self, action: #selector(onCancelButtonDidPressed), for: .touchUpInside)
+        return b
     }()
     
     private lazy var qrView: QRInfoView = {
@@ -177,6 +207,7 @@ private extension InstallmentPaymentView {
         stackView.addArrangedSubview(amountLabel)
         stackView.addArrangedSubview(qrView)
         stackView.addArrangedSubview(installmentButton)
+        stackView.addArrangedSubview(cancelButton)
         
         makeConstraints()
     }
@@ -190,10 +221,18 @@ private extension InstallmentPaymentView {
         
         stackView.addCustomSpacing(16, after: amountLabel)
         
+        stackView.addCustomSpacing(16, after: qrView)
+        stackView.addCustomSpacing(16, after: installmentButton)
+        
         installmentButton.anchor(height: 48)
+        cancelButton.anchor(height: 48)
     }
     
     @objc private func didTapMakeInstallmentButton() {
         delegate?.makeInstallment()
+    }
+    
+    @objc private func onCancelButtonDidPressed() {
+        delegate?.popMainViewController()
     }
 }
