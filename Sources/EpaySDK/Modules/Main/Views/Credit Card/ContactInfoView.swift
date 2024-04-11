@@ -24,8 +24,10 @@ class ContactInfoView: UIView {
         let v = SkyFloatingLabelTextField()
         v.autocapitalizationType = .none
         v.font = UIFont.systemFont(ofSize: 14)
-        v.placeholder = NSLocalizedString(Constants.Localizable.emailRequiredHint, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
-        v.title = NSLocalizedString(Constants.Localizable.emailRequiredHint, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+//        v.placeholder = NSLocalizedString(Constants.Localizable.emailRequiredHint, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        v.placeholder = String(Constants.Localizable.emailRequiredHint).localized()
+//        v.title = NSLocalizedString(Constants.Localizable.emailRequiredHint, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        v.title = String(Constants.Localizable.emailRequiredHint).localized()
         v.keyboardType = UIKeyboardType.emailAddress
         v.isHidden = true
         v.delegate = self

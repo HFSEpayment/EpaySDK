@@ -23,7 +23,7 @@ struct PaymentRequestBody {
     let phone: String?
     let postLink: String
     let failurePostLink: String
-    let language: String = "rus"
+    let language: String = "eng"
     let useGoBonus: Bool
     let cardSave: Bool
     let not3d: Bool?
