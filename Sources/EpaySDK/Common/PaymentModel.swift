@@ -32,7 +32,11 @@ open class PaymentModel {
     }
     var cryptogram: String!
     var isMasterPass: Bool? = false
-    var saveCard: Bool? = false
+    var saveCard: Bool? {
+        didSet {
+            saveCard = invoice.cardSave ?? false
+        }
+    }
     lazy var publicKey = Constants.publicKey // prod
     var applePayToken: [String: Any]?
     
@@ -63,6 +67,7 @@ open class PaymentModel {
         self.authConfig = authConfig
         self.invoice = invoice
         self.homeBankInstalled = homeBankInstalled
+    
     }
     
     // MARK: - Public methods
@@ -161,6 +166,7 @@ open class PaymentModel {
 
     public func makePayment(completion: @escaping (Bool) -> ()) {
         let token = self.tokenResponseBody.access_token
+        print(saveCard)
         let body = PaymentRequestBody(amount: invoice.amount,
                                       currency: invoice.currency,
                                       name: name,
@@ -176,6 +182,7 @@ open class PaymentModel {
                                       cardSave: saveCard ?? false,
                                       paymentType: isMasterPass == false ? nil : "masterPass",
                                       masterpass: isMasterPass == false ? nil : invoice.masterPass
+                                      
         )
         
         apiRequest.makePayment(accessToken: token, body: body) { (body, error) in

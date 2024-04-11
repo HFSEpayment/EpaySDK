@@ -90,6 +90,10 @@ class CreditCardPaymentView: UIView {
     private lazy var bonusView = BonusView(price: amount ?? 0)
     private lazy var contactInfoView = ContactInfoView()
     
+    func preEmailandPhone (invoice: Invoice?) {
+        contactInfoView.emailTextField.text = invoice?.email
+        contactInfoView.phoneTextField.text = invoice?.phone
+    }
     
     private lazy var payButton: UIButton = {
         let b = UIButton()
