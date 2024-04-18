@@ -114,7 +114,7 @@ class SuccessViewController: UIViewController {
         let b = UIButton()
         b.layer.cornerRadius = 3
         b.layer.borderWidth = 1
-        b.setAttributedTitle(NSAttributedString(string: NSLocalizedString(Constants.Localizable.close, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: ""),
+        b.setAttributedTitle(NSAttributedString(string: String(Constants.Localizable.close).localized(),
                                                 attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]), for: .normal)
         b.addTarget(self, action: #selector(closeButtonDidPressed), for: .touchUpInside)
         return b
@@ -132,7 +132,8 @@ class SuccessViewController: UIViewController {
         case .quarterly:
             string = Constants.Localizable.quarterlyAutopaymentQuestion
         }
-        l.text = NSLocalizedString(string, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        l.text = String(string).localized()
+        
         let colorScheme = paymentModel.publicProfile?.assets?.color_scheme
         if let textColor = paymentModel.publicProfile?.assets?.color_scheme?.textColor {
             l.textColor = textColor
@@ -155,7 +156,7 @@ class SuccessViewController: UIViewController {
     private lazy var subscribeButton: UIButton = {
         let b = UIButton()
         b.layer.cornerRadius = 3
-        b.setAttributedTitle(NSAttributedString(string: NSLocalizedString(Constants.Localizable.confirmSubscribe, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: ""),
+        b.setAttributedTitle(NSAttributedString(string: String(Constants.Localizable.confirmSubscribe).localized(),
                                                 attributes: [NSAttributedString.Key.foregroundColor : UIColor.white,
                                                              NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]),
                              for: .normal)
@@ -374,12 +375,7 @@ class SuccessViewController: UIViewController {
     }
 
     private func localized(by key: String) -> String {
-        return NSLocalizedString(
-            key,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        return String(key).localized()
     }
 
     private func setCustomStyle() {

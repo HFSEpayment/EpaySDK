@@ -8,6 +8,27 @@
 
 import Foundation
 
+
+//@Dos Bundle for translate
+extension Bundle {
+    private static var bundle: Bundle!
+    
+    public static func localizedBundle() -> Bundle! {
+        if bundle == nil {
+            let appLang = UserDefaults.standard.string(forKey: "app_lang") ?? "ru"
+            let path = Bundle.module.path(forResource: appLang, ofType: "lproj")
+            bundle = Bundle(path: path!)
+        }
+        return bundle;
+    }
+    
+    public static func setLanguage(lang: String) {
+        UserDefaults.standard.set(lang, forKey: "app_lang")
+        let path = Bundle.module.path(forResource: lang, ofType: "lproj")
+        bundle = Bundle(path: path!)
+    }
+}
+
 extension String {
 
     var dictionary: [String: Any]? {
@@ -64,4 +85,16 @@ extension String {
         let start = index(startIndex, offsetBy: max(0, range.lowerBound))
          return String(self[start...])
     }
+    
+    //@Dos transalte func
+    func localized() -> String {
+        return NSLocalizedString(self, tableName: Constants.Localizable.tableName, bundle: Bundle.localizedBundle(), comment: "")
+    }
+    
+    //@Dos transalte func
+    func localizeWithFormat(arguments: CVarArg...) -> String{
+       return String(format: self.localized(), arguments: arguments)
+    }
+    
+    
 }

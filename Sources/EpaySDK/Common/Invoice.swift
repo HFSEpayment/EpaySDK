@@ -30,6 +30,7 @@ public struct Invoice {
     var email: String?
     var phone: String?
     var cardSave: Bool?
+    var langApp: String?
 
     public init(
         id: String,
@@ -49,7 +50,8 @@ public struct Invoice {
         masterPass: MasterPassData? = nil,
         email: String? = nil,
         phone: String? = nil,
-        cardSave: Bool? = nil
+        cardSave: Bool? = nil,
+        langApp: String? = nil
     ) {
         self.id = id
         self.amount = amount
@@ -69,6 +71,7 @@ public struct Invoice {
         self.email = email
         self.phone = phone
         self.cardSave = cardSave
+        self.langApp = langApp
     }
 }
 

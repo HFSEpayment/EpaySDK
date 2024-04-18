@@ -23,7 +23,7 @@ struct PaymentRequestBody {
     let phone: String?
     let postLink: String
     let failurePostLink: String
-    let language: String = "rus"
+    var language: String?
     let useGoBonus: Bool
     let cardSave: Bool
     let not3d: Bool?
@@ -53,7 +53,8 @@ struct PaymentRequestBody {
          osuvoxCardId: String? = nil,
          terminalId: String? = nil,
          applePayToken: [String: Any]? = nil,
-         masterpass: MasterPassData? = nil
+         masterpass: MasterPassData? = nil,
+         language: String? = nil
     ) {
         self.amount = amount
         self.currency = currency
@@ -74,5 +75,6 @@ struct PaymentRequestBody {
         self.terminalId = terminalId
         self.applePayToken = applePayToken
         self.masterpass = masterpass
+        self.language = language
     }
 }

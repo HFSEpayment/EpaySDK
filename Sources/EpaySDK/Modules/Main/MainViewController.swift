@@ -22,6 +22,7 @@ import QuartzCore
 import Security
 import CardScan
 
+
 class MainViewController: UIViewController {
 
     private let tableView = UITableView(frame: .zero, style: .grouped)
@@ -67,15 +68,18 @@ class MainViewController: UIViewController {
         self.isHomebankInstalled = isHomebankInstalled
         super.init(nibName: nil, bundle: nil)
         setPaymentTypes()
+
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.addSubview(tableView)
         setLayoutConstraints()
         stylize()
@@ -92,7 +96,10 @@ class MainViewController: UIViewController {
                 }
             }
         }
+        
+        
     }
+    
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -381,7 +388,9 @@ extension MainViewController: PaymentInfoTableViewCellDelegate {
         let dict = [
             "isSuccessful": false,
             "errorCode": -1,
-            "errorMessage": NSLocalizedString(Constants.Localizable.mainCancel, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+            "errorMessage": String(
+                Constants.Localizable.mainCancel
+            ).localized()
             ] as [String : Any]
         
         NotificationCenter.default.post(name: Notification.Name(Constants.Notification.main),  object: nil, userInfo: dict)

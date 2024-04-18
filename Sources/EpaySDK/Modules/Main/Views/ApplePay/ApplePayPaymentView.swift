@@ -66,12 +66,9 @@ class ApplePayPaymentView: UIView {
     }
 
     private func stylize() {
-        let cancelTitle = NSLocalizedString(
-            Constants.Localizable.cancel,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        let cancelTitle = String(
+            Constants.Localizable.cancel
+        ).localized()
         cancelButton.layer.cornerRadius = 3
         cancelButton.layer.borderWidth = 1
         cancelButton.setTitle(cancelTitle, for: .normal)

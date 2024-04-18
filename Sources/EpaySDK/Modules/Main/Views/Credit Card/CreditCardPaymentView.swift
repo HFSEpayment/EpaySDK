@@ -23,10 +23,9 @@ class CreditCardPaymentView: UIView {
                 payButton.setAttributedTitle(
                     NSAttributedString(
                         string:
-                            NSLocalizedString(
-                                Constants.Localizable.payAmount,
-                                tableName: Constants.Localizable.tableName,
-                                bundle: Bundle.module, comment: "") + " " + String(amount) + " KZT",
+                            String(
+                                Constants.Localizable.payAmount
+                            ).localized() + " " + String(amount) + " KZT",
                                                                 
                         attributes: [
                             NSAttributedString.Key.foregroundColor : colorScheme?.bgGradientParams.color1 ?? UIColor.white,
@@ -70,7 +69,9 @@ class CreditCardPaymentView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let l = UILabel()
-        l.text = NSLocalizedString(Constants.Localizable.fillInCardDetails, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        l.text = String(
+            Constants.Localizable.fillInCardDetails
+        ).localized()
         l.font = UIFont.systemFont(ofSize: 14)
         l.textAlignment = .center
         l.isHidden = true
@@ -100,8 +101,7 @@ class CreditCardPaymentView: UIView {
         b.tag = 0 // 0 - disabled, 1 - enabled
         b.layer.cornerRadius = 3
         b.backgroundColor = UIColor.lightGray
-        b.setAttributedTitle(NSAttributedString(string: NSLocalizedString(Constants.Localizable.payAmount, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: ""),
-                                                attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]),
+        b.setAttributedTitle(NSAttributedString(string: String(Constants.Localizable.payAmount).localized(), attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]),
                              for: .normal)
         b.setTitleColor(.clear, for: .normal)
         b.addTarget(self, action: #selector(onPayButtonDidPressed), for: .touchUpInside)
@@ -109,12 +109,9 @@ class CreditCardPaymentView: UIView {
     }()
     
     private lazy var cancelButton: UIButton = {
-        let string = NSLocalizedString(
-            Constants.Localizable.cancel,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        let string = String(
+            Constants.Localizable.cancel
+        ).localized()
         let attributedString = NSAttributedString(
             string: string,
             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]
@@ -208,12 +205,9 @@ class CreditCardPaymentView: UIView {
         
         switcher.onTintColor = UIColor.mainColor
         descriptionLabel.font = .systemFont(ofSize: 13)
-        descriptionLabel.text = NSLocalizedString(
-            Constants.Localizable.saveCard,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        descriptionLabel.text = String(
+            Constants.Localizable.saveCard
+        ).localized()
         
 
         if let textColor = colorScheme?.textColor {

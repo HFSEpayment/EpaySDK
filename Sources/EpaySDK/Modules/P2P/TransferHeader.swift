@@ -78,12 +78,9 @@ class TransferHeader: UITableViewHeaderFooterView {
         logoImageView.image = UIImage(named: Constants.Images.logo, in: Bundle.module, compatibleWith: nil)
         logoImageView.contentMode = .scaleAspectFit
 
-        titleLabel.text = NSLocalizedString(
-            Constants.Localizable.fillInCardDetails,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        titleLabel.text = String(
+            Constants.Localizable.fillInCardDetails
+        ).localized()
         titleLabel.font = UIFont.systemFont(ofSize: 13)
 
         leftLineView.backgroundColor = .lightGray

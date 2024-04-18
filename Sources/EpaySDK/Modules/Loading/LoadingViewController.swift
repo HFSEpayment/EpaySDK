@@ -45,7 +45,9 @@ class LoadingViewController: UIViewController {
     
     private lazy var titleLabel: UILabel = {
         let l = UILabel()
-        l.text = NSLocalizedString(Constants.Localizable.loadingText, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        l.text = String(
+            Constants.Localizable.loadingText
+        ).localized()
         l.textAlignment = .center
         l.font = UIFont.systemFont(ofSize: 14)
         l.numberOfLines = 0
@@ -136,7 +138,7 @@ class LoadingViewController: UIViewController {
             safeAreaBottomInset = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
         }
         let backButton = UIButton()
-        backButton.setTitle(NSLocalizedString(Constants.Localizable.back, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: ""), for: .normal)
+        backButton.setTitle(String(Constants.Localizable.back).localized(), for: .normal)
         backButton.setTitleColor(self.view.tintColor, for: .normal)
         backButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         
@@ -304,7 +306,7 @@ class LoadingViewController: UIViewController {
             
             guard let url = key as? URL, webView.superview != nil else { return }
             if let _ = url.valueOf("errorCode") {
-                let message = NSLocalizedString("error_payment_455", tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+                let message = String("error_payment_455").localized()
                 let error = ErrorResponseBody(message: message)
                 self.paymentModel.errorResponseBody = error
                 webView.removeFromSuperview()

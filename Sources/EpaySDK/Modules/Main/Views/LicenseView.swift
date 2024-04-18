@@ -22,7 +22,8 @@ class LicenseView: UIView {
         l.textAlignment = .right
         l.font = UIFont.systemFont(ofSize: 8)
         let year = Calendar.current.component(.year, from: Date())
-        l.text = NSLocalizedString(Constants.Localizable.halykLicense, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "") + String(year) + NSLocalizedString(Constants.Localizable.halyJsc, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        l.text = String(Constants.Localizable.halykLicense).localized()
+        + String(year) + String(Constants.Localizable.halyJsc).localized()
         return l
     }()
 

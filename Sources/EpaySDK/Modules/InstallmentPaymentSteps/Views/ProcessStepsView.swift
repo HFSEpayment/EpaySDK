@@ -14,32 +14,20 @@ class ProcessStepsView: UIView {
             switch orderStatus {
             case .scan:
                 isHidden = false
-                stepsLabel.text = NSLocalizedString(
-                    Constants.Localizable.step1Of3,
-                    tableName: Constants.Localizable.tableName,
-                    bundle: Bundle.module,
-                    comment: ""
-                )
-                stepDescriptionLabel.text = NSLocalizedString(
-                    Constants.Localizable.step1Description,
-                    tableName: Constants.Localizable.tableName,
-                    bundle: Bundle.module,
-                    comment: ""
-                )
+                stepsLabel.text = String(
+                    Constants.Localizable.step1Of3
+                ).localized()
+                stepDescriptionLabel.text = String(
+                    Constants.Localizable.step1Description
+                ).localized()
             case .inProgress:
                 isHidden = false
-                stepsLabel.text = NSLocalizedString(
-                    Constants.Localizable.step2Of3,
-                    tableName: Constants.Localizable.tableName,
-                    bundle: Bundle.module,
-                    comment: ""
-                )
-                stepDescriptionLabel.text = NSLocalizedString(
-                    Constants.Localizable.step2Description,
-                    tableName: Constants.Localizable.tableName,
-                    bundle: Bundle.module,
-                    comment: ""
-                )
+                stepsLabel.text = String(
+                    Constants.Localizable.step2Of3
+                ).localized()
+                stepDescriptionLabel.text = String(
+                    Constants.Localizable.step2Description
+                ).localized()
             default:
                 self.isHidden = true
             }

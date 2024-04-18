@@ -22,34 +22,25 @@ class InstallmentInfoView: UIView {
     
     var commission: Double = 0 {
         didSet {
-            commissionLabel.text = NSLocalizedString(
-                Constants.Localizable.commission,
-                tableName: Constants.Localizable.tableName,
-                bundle: Bundle.module,
-                comment: ""
-            ) + ": \(commission) KZT"
+            commissionLabel.text = String(
+                Constants.Localizable.commission
+            ).localized() + ": \(commission) KZT"
         }
     }
     
     var seller: String = "" {
         didSet {
-            sellerLabel.text = NSLocalizedString(
-                Constants.Localizable.seller,
-                tableName: Constants.Localizable.tableName,
-                bundle: Bundle.module,
-                comment: ""
-            ) + ": \(seller)"
+            sellerLabel.text = String(
+                Constants.Localizable.seller
+            ).localized() + ": \(seller)"
         }
     }
     
     var orderNumber: String = "" {
         didSet {
-            orderNumberLabel.text = NSLocalizedString(
-                Constants.Localizable.order,
-                tableName: Constants.Localizable.tableName,
-                bundle: Bundle.module,
-                comment: ""
-            ) + orderNumber
+            orderNumberLabel.text = String(
+                Constants.Localizable.order
+            ).localized() + orderNumber
         }
     }
     
@@ -82,12 +73,7 @@ class InstallmentInfoView: UIView {
     
     private lazy var paymentDescriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString(
-            Constants.Localizable.paymentInOnlineShop,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        label.text = String(Constants.Localizable.paymentInOnlineShop).localized()
         label.textColor = UIColor(hexString: "#071222")
         label.font = UIFont.systemFont(ofSize: 16)
         return label
