@@ -94,12 +94,10 @@ class QRPaymentView: UIView {
         descriptionLabel.font = .systemFont(ofSize: 14)
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textAlignment = .center
-        descriptionLabel.text = NSLocalizedString(
-            Constants.Localizable.scanQRToPay,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        descriptionLabel.text = String(
+            Constants.Localizable.scanQRToPay
+        ).localized()
+        
 
         imageView.contentMode = .scaleToFill
 
@@ -109,12 +107,9 @@ class QRPaymentView: UIView {
         payButton.setTitleColor(.white, for: .normal)
         payButton.titleLabel?.font = .boldSystemFont(ofSize: 16)        
 
-        let cancelTitle = NSLocalizedString(
-            Constants.Localizable.cancel,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        let cancelTitle = String(
+            Constants.Localizable.cancel
+        ).localized()
         cancelButton.layer.cornerRadius = 3
         cancelButton.layer.borderWidth = 1
         cancelButton.setTitle(cancelTitle, for: .normal)

@@ -57,8 +57,12 @@ class CreditCardView: UIView {
         v.backspaceTextFieldDelegate = self
         v.autocapitalizationType = .allCharacters
         v.font = UIFont.systemFont(ofSize: 16)
-        v.placeholder = NSLocalizedString(Constants.Localizable.cardClientNameHint, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
-        v.title = NSLocalizedString(Constants.Localizable.cardClientNameHint, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        v.placeholder = String(
+            Constants.Localizable.cardClientNameHint
+        ).localized()
+        v.title = String(
+            Constants.Localizable.cardClientNameHint
+        ).localized()
         v.delegate = self
         v.isHidden = true
         return v
@@ -84,8 +88,12 @@ class CreditCardView: UIView {
         let v = BackspaceTextField()
         v.backspaceTextFieldDelegate = self
         v.font = UIFont.systemFont(ofSize: 16)
-        v.placeholder = NSLocalizedString(Constants.Localizable.cardNumberHint, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
-        v.title = NSLocalizedString(Constants.Localizable.cardNumberHint, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        v.placeholder = String(
+            Constants.Localizable.cardNumberHint
+        ).localized()
+        v.title = String(
+            Constants.Localizable.cardNumberHint
+        ).localized()
         v.delegate = self
         v.keyboardType = .asciiCapableNumberPad
         return v
@@ -95,8 +103,12 @@ class CreditCardView: UIView {
         let v = BackspaceTextField()
         v.backspaceTextFieldDelegate = self
         v.font = UIFont.systemFont(ofSize: 16)
-        v.placeholder = NSLocalizedString(Constants.Localizable.cardMonthHint, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
-        v.title = NSLocalizedString(Constants.Localizable.cardMonthHint, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        v.placeholder = String(
+            Constants.Localizable.cardMonthHint
+        ).localized()
+        v.title = String(
+            Constants.Localizable.cardMonthHint
+        ).localized()
         v.delegate = self
         v.keyboardType = .asciiCapableNumberPad
         return v
@@ -107,8 +119,12 @@ class CreditCardView: UIView {
         v.backspaceTextFieldDelegate = self
         v.textColor = .black
         v.font = UIFont.systemFont(ofSize: 16)
-        v.placeholder = NSLocalizedString(Constants.Localizable.cardYearHint, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
-        v.title = NSLocalizedString(Constants.Localizable.cardYearHint, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        v.placeholder = String(
+            Constants.Localizable.cardYearHint
+        ).localized()
+        v.title = String(
+            Constants.Localizable.cardYearHint
+        ).localized()
         v.delegate = self
         v.keyboardType = .asciiCapableNumberPad
         return v
@@ -119,8 +135,12 @@ class CreditCardView: UIView {
         v.backspaceTextFieldDelegate = self
         v.isSecureTextEntry = true
         v.font = UIFont.systemFont(ofSize: 16)
-        v.placeholder = NSLocalizedString(Constants.Localizable.cardCvvHint, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
-        v.title = NSLocalizedString(Constants.Localizable.cardCvvHint, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        v.placeholder = String(
+            Constants.Localizable.cardCvvHint
+        ).localized()
+        v.title = String(
+            Constants.Localizable.cardCvvHint
+        ).localized()
         v.delegate = self
         v.keyboardType = .asciiCapableNumberPad
         let button = UIButton(type: .contactAdd)
@@ -236,9 +256,16 @@ class CreditCardView: UIView {
     }
     
     @objc private func cvvButtonDidPressed() {
-        delegate?.showAlert(title: NSLocalizedString(Constants.Localizable.cardCvvHintTitle, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: ""),
-                            message: NSLocalizedString(Constants.Localizable.cardCvvHintMessage, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: ""),
-                            actionTitle: NSLocalizedString(Constants.Localizable.close, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: ""))
+        delegate?.showAlert(title: String(
+                                Constants.Localizable.cardCvvHintTitle
+                            ).localized(),
+                            message: String(
+                                Constants.Localizable.cardCvvHintMessage
+                            ).localized(),
+                            actionTitle: String(
+                                Constants.Localizable.close
+                            ).localized()
+        )
     }
     
     @objc private func textFieldDidChange(textField: UITextField) {

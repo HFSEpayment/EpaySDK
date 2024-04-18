@@ -93,12 +93,7 @@ class PaymentTypesView: UIView {
     private func stylize() {
         backgroundColor = .clear
 
-        titleLabel.text = NSLocalizedString(
-            Constants.Localizable.choosePaymentMethod,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        titleLabel.text = String(Constants.Localizable.choosePaymentMethod).localized()
         titleLabel.textColor = colorScheme?.textColor
         titleLabel.font = UIFont.systemFont(ofSize: 14)
 

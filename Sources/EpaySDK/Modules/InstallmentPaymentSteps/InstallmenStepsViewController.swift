@@ -50,12 +50,9 @@ class InstallmenStepsViewController: UIViewController {
         button.layer.borderColor = UIColor.mainColor.cgColor
         button.setAttributedTitle(
             NSAttributedString(
-                string: NSLocalizedString(
-                    Constants.Localizable.close,
-                    tableName: Constants.Localizable.tableName,
-                    bundle: Bundle.module,
-                    comment: ""
-                ),
+                string: String(
+                    Constants.Localizable.close
+                ).localized(),
                 attributes: [
                     NSAttributedString.Key.foregroundColor : UIColor.mainColor,
                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)
@@ -74,12 +71,9 @@ class InstallmenStepsViewController: UIViewController {
         button.layer.borderColor = UIColor.mainColor.cgColor
         button.setAttributedTitle(
             NSAttributedString(
-                string: NSLocalizedString(
-                    "Мои заявки",
-                    tableName: Constants.Localizable.tableName,
-                    bundle: Bundle.module,
-                    comment: ""
-                ),
+                string: String(
+                    "Мои заявки"
+                ).localized(),
                 attributes: [
                     NSAttributedString.Key.foregroundColor : UIColor.mainColor,
                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)

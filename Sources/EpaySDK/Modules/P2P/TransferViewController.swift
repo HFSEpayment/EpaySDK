@@ -278,12 +278,9 @@ extension TransferViewController: TransferButtonsCellDelegate {
     }
 
     func didPressCancelButton() {
-        let errorMessage = NSLocalizedString(
-            Constants.Localizable.mainCancel,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        let errorMessage = String(
+            Constants.Localizable.mainCancel
+        ).localized()
         let dict: [String: Any] = ["isSuccessful": false, "errorCode": -1, "errorMessage": errorMessage]
         NotificationCenter.default.post(name: Notification.Name(Constants.Notification.main),  object: nil, userInfo: dict)
     }

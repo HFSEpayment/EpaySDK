@@ -75,12 +75,9 @@ class HalykIDPaymentView: UIView {
 
         bonusView.isHidden = true
 
-        let payTitle = NSLocalizedString(
-            Constants.Localizable.payAmount,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        let payTitle = String(
+            Constants.Localizable.payAmount
+        ).localized()
         payButton.backgroundColor = UIColor.lightGray
         payButton.layer.cornerRadius = 3
         payButton.setTitle(payTitle, for: .normal)
@@ -88,12 +85,9 @@ class HalykIDPaymentView: UIView {
         payButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
         payButton.isEnabled = false
 
-        let cancelTitle = NSLocalizedString(
-            Constants.Localizable.cancel,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        let cancelTitle = String(
+            Constants.Localizable.cancel
+        ).localized()
         cancelButton.layer.cornerRadius = 3
         cancelButton.layer.borderWidth = 1
         cancelButton.setTitle(cancelTitle, for: .normal)

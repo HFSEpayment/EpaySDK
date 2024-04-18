@@ -51,18 +51,12 @@ class TransferEmailCell: UITableViewCell {
         selectionStyle = .none
         backgroundColor = .clear
         
-        let placeholder = NSLocalizedString(
-            Constants.Localizable.emailRequiredHint,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
-        let title = NSLocalizedString(
-            Constants.Localizable.emailRequiredHint,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        let placeholder = String(
+            Constants.Localizable.emailRequiredHint
+        ).localized()
+        let title = String(
+            Constants.Localizable.emailRequiredHint
+        ).localized()
         emailTextField.font = .systemFont(ofSize: 14)
         emailTextField.autocapitalizationType = .none
         emailTextField.keyboardType = .emailAddress

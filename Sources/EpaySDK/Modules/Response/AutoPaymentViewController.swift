@@ -51,7 +51,9 @@ class AutoPaymentViewController: UIViewController {
     private lazy var responseLabel: UILabel = {
         let l = UILabel()
         l.textColor = .black
-        l.text = NSLocalizedString(Constants.Localizable.autoPaymentSuccess, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        l.text = String(
+            Constants.Localizable.autoPaymentSuccess
+        ).localized()
         l.textAlignment = .center
         l.font = UIFont.systemFont(ofSize: 22)
         l.numberOfLines = 0
@@ -60,7 +62,9 @@ class AutoPaymentViewController: UIViewController {
     
     private lazy var invoiceIdLabel: UILabel = {
         let l = UILabel()
-        l.text = NSLocalizedString(Constants.Localizable.invoiceId, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "") + paymentModel.paymentResponseBody.invoiceID
+        l.text = String(
+            Constants.Localizable.invoiceId
+        ).localized() + paymentModel.paymentResponseBody.invoiceID
         l.textAlignment = .center
         l.textColor = UIColor(hexString: "#7E8194")
         l.font = UIFont.systemFont(ofSize: 14)
@@ -69,7 +73,9 @@ class AutoPaymentViewController: UIViewController {
     
     private lazy var referenceLabel: UILabel = {
         let l = UILabel()
-        l.text = NSLocalizedString(Constants.Localizable.reference, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "") + paymentModel.paymentResponseBody.reference
+        l.text = String(
+            Constants.Localizable.reference
+        ).localized() + paymentModel.paymentResponseBody.reference
         l.textAlignment = .center
         l.textColor = UIColor(hexString: "#7E8194")
         l.font = UIFont.systemFont(ofSize: 14)
@@ -91,7 +97,9 @@ class AutoPaymentViewController: UIViewController {
     private lazy var descriptionLabel: UILabel = {
         let l = UILabel()
         l.textColor = .black
-        l.text = NSLocalizedString(Constants.Localizable.autoPaymentAmount, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        l.text = String(
+            Constants.Localizable.autoPaymentAmount
+        ).localized()
         l.textAlignment = .center
         l.font = UIFont.systemFont(ofSize: 14)
         l.numberOfLines = 0
@@ -101,7 +109,9 @@ class AutoPaymentViewController: UIViewController {
     private lazy var onlineShopPaymentLabel: UILabel = {
         let l = UILabel()
         l.textColor = .black
-        l.text = NSLocalizedString(Constants.Localizable.onlineShopPayment, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        l.text = String(
+            Constants.Localizable.onlineShopPayment
+        ).localized()
         l.textAlignment = .center
         l.font = UIFont.systemFont(ofSize: 14)
         l.numberOfLines = 0
@@ -111,7 +121,7 @@ class AutoPaymentViewController: UIViewController {
     public lazy var sellerLabel: UILabel = {
         let l = UILabel()
         l.textAlignment = .center
-        let firstText = NSAttributedString(string: NSLocalizedString(Constants.Localizable.merchantLabel, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor(hexString: "#566681"),
+        let firstText = NSAttributedString(string: String(Constants.Localizable.merchantLabel).localized(), attributes: [NSAttributedString.Key.foregroundColor: UIColor(hexString: "#566681"),
                                                                                                                                                                                                                                   NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
         let secondText = NSAttributedString(string: " \(paymentModel.authConfig.merchantName)", attributes: [NSAttributedString.Key.foregroundColor: UIColor(hexString: "#071222"),
                                                                                                              NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
@@ -125,9 +135,9 @@ class AutoPaymentViewController: UIViewController {
     private lazy var periodDateLabel: UILabel = {
         let l = UILabel()
         l.textAlignment = .center
-        let firstText = NSAttributedString(string: NSLocalizedString(Constants.Localizable.periodLabel, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor(hexString: "#566681"),
+        let firstText = NSAttributedString(string: String(Constants.Localizable.periodLabel).localized(), attributes: [NSAttributedString.Key.foregroundColor: UIColor(hexString: "#566681"),
                                                                                                                                                                                                                                   NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
-        let secondText = NSAttributedString(string: " " + NSLocalizedString(self.paymentModel.autoPaymentResponseBody.paymentFrequency, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor(hexString: "#071222"),
+        let secondText = NSAttributedString(string: " " + String(self.paymentModel.autoPaymentResponseBody.paymentFrequency).localized(), attributes: [NSAttributedString.Key.foregroundColor: UIColor(hexString: "#071222"),
                                                                                                              NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
         let newString = NSMutableAttributedString()
         newString.append(firstText)
@@ -139,9 +149,9 @@ class AutoPaymentViewController: UIViewController {
     private lazy var subscriptionStartDateLabel: UILabel = {
         let l = UILabel()
         l.textAlignment = .center
-        let firstText = NSAttributedString(string: NSLocalizedString(Constants.Localizable.subscriptionDateLabel, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor(hexString: "#566681"),
+        let firstText = NSAttributedString(string: String(Constants.Localizable.subscriptionDateLabel).localized(), attributes: [NSAttributedString.Key.foregroundColor: UIColor(hexString: "#566681"),
                                                                                                                                                                                                                                   NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
-        let secondText = NSAttributedString(string: " " + NSLocalizedString(self.paymentModel.autoPaymentResponseBody.createdDateString, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor(hexString: "#071222"),
+        let secondText = NSAttributedString(string: " " + String(self.paymentModel.autoPaymentResponseBody.createdDateString).localized(), attributes: [NSAttributedString.Key.foregroundColor: UIColor(hexString: "#071222"),
                                                                                                              NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
         let newString = NSMutableAttributedString()
         newString.append(firstText)
@@ -153,9 +163,9 @@ class AutoPaymentViewController: UIViewController {
     private lazy var subscriptionEndDateLabel: UILabel = {
         let l = UILabel()
         l.textAlignment = .center
-        let firstText = NSAttributedString(string: NSLocalizedString(Constants.Localizable.subscriptionEndDateLabel, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor(hexString: "#566681"),
+        let firstText = NSAttributedString(string: String(Constants.Localizable.subscriptionEndDateLabel).localized(), attributes: [NSAttributedString.Key.foregroundColor: UIColor(hexString: "#566681"),
                                                                                                                                                                                                                                   NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
-        let secondText = NSAttributedString(string: " " + NSLocalizedString(self.paymentModel.autoPaymentResponseBody.lastPaymentDateString, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: ""), attributes: [NSAttributedString.Key.foregroundColor: UIColor(hexString: "#071222"),
+        let secondText = NSAttributedString(string: " " + String(self.paymentModel.autoPaymentResponseBody.lastPaymentDateString).localized(), attributes: [NSAttributedString.Key.foregroundColor: UIColor(hexString: "#071222"),
                                                                                                              NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)])
         let newString = NSMutableAttributedString()
         newString.append(firstText)
@@ -171,7 +181,7 @@ class AutoPaymentViewController: UIViewController {
         b.layer.cornerRadius = 3
         b.layer.borderWidth = 1
         b.layer.borderColor = UIColor.mainColor.cgColor
-        b.setAttributedTitle(NSAttributedString(string: NSLocalizedString(Constants.Localizable.close, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: ""),
+        b.setAttributedTitle(NSAttributedString(string: String(Constants.Localizable.close).localized(),
                                                 attributes: [NSAttributedString.Key.foregroundColor : UIColor.mainColor,
                                                              NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]),
                              for: .normal)

@@ -69,23 +69,13 @@ class InstallmentPaymentView: UIView {
     
     var monthLabelText: String {
         let localiztion = overpayment > 0 ? Constants.Localizable.creditForMonths : Constants.Localizable.installmentForMonths
-        return NSLocalizedString(
-            localiztion,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        return String(localiztion).localized()
     }
     
     var installmentButtonAttributedTitle: NSAttributedString {
         let localization = overpayment > 0 ? Constants.Localizable.payCredit : Constants.Localizable.payInstallment
         return NSAttributedString(
-            string: NSLocalizedString(
-                localization,
-                tableName: Constants.Localizable.tableName,
-                bundle: Bundle.module,
-                comment: ""
-            ),
+            string: String(localization).localized(),
             attributes: [
                 NSAttributedString.Key.foregroundColor : colorScheme?.bgGradientParams.color1 ?? UIColor.white,
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)
@@ -109,12 +99,7 @@ class InstallmentPaymentView: UIView {
     
     private let amountHeaderLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString(
-            Constants.Localizable.monthlyPayment,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        label.text = String(Constants.Localizable.monthlyPayment).localized()
         label.textColor = UIColor(hexString: "#7E8194")
         label.font = UIFont.systemFont(ofSize: 14)
         return label
@@ -146,12 +131,7 @@ class InstallmentPaymentView: UIView {
     }()
     
     private lazy var cancelButton: UIButton = {
-        let string = NSLocalizedString(
-            Constants.Localizable.cancel,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        let string = String(Constants.Localizable.cancel).localized()
         let attributedString = NSAttributedString(
             string: string,
             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]
@@ -166,12 +146,8 @@ class InstallmentPaymentView: UIView {
     
     private lazy var qrView: QRInfoView = {
         let view = QRInfoView(qrPadding: 96)
-        view.text =  NSLocalizedString(
-            Constants.Localizable.scanViaQr,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        view.text = String(Constants.Localizable.scanViaQr).localized()
+        
         return view
     }()
     

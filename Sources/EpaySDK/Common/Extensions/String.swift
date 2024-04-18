@@ -88,7 +88,7 @@ extension String {
     
     //@Dos transalte func
     func localized() -> String {
-        return NSLocalizedString(self, tableName: nil, bundle: Bundle.localizedBundle(), value: "", comment: "")
+        return NSLocalizedString(self, tableName: Constants.Localizable.tableName, bundle: Bundle.localizedBundle(), comment: "")
     }
     
     //@Dos transalte func

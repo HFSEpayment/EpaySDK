@@ -43,7 +43,9 @@ public class LaunchScreenViewController: UIViewController {
     
     private lazy var introTextLabel: UILabel = {
         let l = UILabel()
-        l.text = NSLocalizedString(Constants.Localizable.introText, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        l.text = String(
+            Constants.Localizable.introText
+        ).localized()
         l.textAlignment = .center
         l.font = UIFont.systemFont(ofSize: 14)
         l.textColor = .black
@@ -93,6 +95,7 @@ public class LaunchScreenViewController: UIViewController {
         
         setupViews()
         setupConstraints()
+        
     }
     
     // MARK: - Public methods

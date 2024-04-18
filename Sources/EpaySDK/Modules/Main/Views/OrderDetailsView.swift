@@ -73,12 +73,7 @@ class OrderDetailsView: UITableViewHeaderFooterView {
     }
 
     func set(orderNumber: String) {
-        let invoiceText = NSLocalizedString(
-            Constants.Localizable.invoiceId,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        let invoiceText = String(Constants.Localizable.invoiceId).localized()
         orderNumberLabel.text = invoiceText + " " + orderNumber.description
     }
 

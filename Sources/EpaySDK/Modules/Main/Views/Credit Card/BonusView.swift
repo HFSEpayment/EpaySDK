@@ -32,7 +32,9 @@ class BonusView: UIView {
     
     private lazy var spendBonusLabel: UILabel = {
         let l = UILabel()
-        l.text = NSLocalizedString(Constants.Localizable.useBonuses, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        l.text = String(
+            Constants.Localizable.useBonuses
+        ).localized()
         l.textColor = .black
         l.font = UIFont.systemFont(ofSize: 14)
         return l
@@ -54,7 +56,9 @@ class BonusView: UIView {
     
     private lazy var chargeLabel: UILabel = {
         let l = UILabel()
-        l.text = NSLocalizedString(Constants.Localizable.willBeCharged, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        l.text = String(
+            Constants.Localizable.willBeCharged
+        ).localized()
         l.textColor = .black
         l.font = UIFont.systemFont(ofSize: 14)
         return l
@@ -98,7 +102,9 @@ class BonusView: UIView {
     
     private lazy var fromCardLabel: UILabel = {
         let l = UILabel()
-        l.text = NSLocalizedString(Constants.Localizable.fromCard, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        l.text = String(
+            Constants.Localizable.fromCard
+        ).localized()
         l.textColor = UIColor(hexString: "#566681")
         l.font = UIFont.systemFont(ofSize: 10)
         return l
@@ -106,7 +112,9 @@ class BonusView: UIView {
     
     private lazy var fromBonusLabel: UILabel = {
         let l = UILabel()
-        l.text = NSLocalizedString(Constants.Localizable.fromBonus, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+        l.text = String(
+            Constants.Localizable.fromBonus
+        ).localized()
         l.textColor = UIColor(hexString: "#566681")
         l.font = UIFont.systemFont(ofSize: 10)
         return l

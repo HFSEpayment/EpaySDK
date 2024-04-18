@@ -98,8 +98,6 @@ class MainViewController: UIViewController {
         }
         
         
-        Bundle.setLanguage(lang: paymentModel.invoice.langApp ?? "ru")
-        
     }
     
 
@@ -390,7 +388,9 @@ extension MainViewController: PaymentInfoTableViewCellDelegate {
         let dict = [
             "isSuccessful": false,
             "errorCode": -1,
-            "errorMessage": NSLocalizedString(Constants.Localizable.mainCancel, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "")
+            "errorMessage": String(
+                Constants.Localizable.mainCancel
+            ).localized()
             ] as [String : Any]
         
         NotificationCenter.default.post(name: Notification.Name(Constants.Notification.main),  object: nil, userInfo: dict)

@@ -68,64 +68,40 @@ class StepsStateView: UIView {
         case .scan:
             indicatorView.isHidden = false
             iconImageView.isHidden = true
-            stateLabel.text = NSLocalizedString(
-                Constants.Localizable.pleaseWait,
-                tableName: Constants.Localizable.tableName,
-                bundle: Bundle.module,
-                comment: ""
-            )
-            stateDescription.text = NSLocalizedString(
-                Constants.Localizable.doNotUpdatePage,
-                tableName: Constants.Localizable.tableName,
-                bundle: Bundle.module,
-                comment: ""
-            )
+            stateLabel.text = String(
+                Constants.Localizable.pleaseWait
+            ).localized()
+            stateDescription.text = String(
+                Constants.Localizable.doNotUpdatePage
+            ).localized()
         case .inProgress:
             indicatorView.isHidden = true
             iconImageView.isHidden = false
             iconImageView.image = UIImage(named: Constants.Images.wait, in: Bundle.module, compatibleWith: nil)
-            stateLabel.text = NSLocalizedString(
-                Constants.Localizable.decisionInProgress,
-                tableName: Constants.Localizable.tableName,
-                bundle: Bundle.module,
-                comment: ""
-            )
-            stateDescription.text =  NSLocalizedString(
-                Constants.Localizable.checkingData,
-                tableName: Constants.Localizable.tableName,
-                bundle: Bundle.module,
-                comment: ""
-            )
+            stateLabel.text = String(
+                Constants.Localizable.decisionInProgress
+            ).localized()
+            stateDescription.text = String(
+                Constants.Localizable.checkingData
+            ).localized()
         case .reject:
             indicatorView.isHidden = true
             iconImageView.image = UIImage(named: Constants.Images.fail, in: Bundle.module, compatibleWith: nil)
-            stateLabel.text = NSLocalizedString(
-                Constants.Localizable.applicationIsRejected,
-                tableName: Constants.Localizable.tableName,
-                bundle: Bundle.module,
-                comment: ""
-            )
-            stateDescription.text = NSLocalizedString(
-                Constants.Localizable.tryToChangeWatOfPayment,
-                tableName: Constants.Localizable.tableName,
-                bundle: Bundle.module,
-                comment: ""
-            )
+            stateLabel.text = String(
+                Constants.Localizable.applicationIsRejected
+            ).localized()
+            stateDescription.text = String(
+                Constants.Localizable.tryToChangeWatOfPayment
+            ).localized()
         case .accept:
             indicatorView.isHidden = true
             iconImageView.image = UIImage(named: Constants.Images.success, in: Bundle.module, compatibleWith: nil)
-            stateLabel.text =  NSLocalizedString(
-                Constants.Localizable.installmentIsAccepted,
-                tableName: Constants.Localizable.tableName,
-                bundle: Bundle.module,
-                comment: ""
-            )
-            stateDescription.text = NSLocalizedString(
-                Constants.Localizable.installmentRegistrationIsEnded,
-                tableName: Constants.Localizable.tableName,
-                bundle: Bundle.module,
-                comment: ""
-            )
+            stateLabel.text = String(
+                Constants.Localizable.installmentIsAccepted
+            ).localized()
+            stateDescription.text = String(
+                Constants.Localizable.installmentRegistrationIsEnded
+            ).localized()
         default:
             break
         }

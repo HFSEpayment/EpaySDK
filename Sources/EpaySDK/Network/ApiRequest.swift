@@ -113,6 +113,11 @@ struct ApiRequest {
         if let not3d = body.not3d {
             params["not3d"] = not3d
         }
+        //@Dos added language for 3DSecure
+        if let language = body.language {
+            params["language"] = language
+        }
+        
         if let paymentType = body.paymentType {
             params["paymentType"] = paymentType
         }

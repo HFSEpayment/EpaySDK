@@ -13,12 +13,9 @@ class QRPopupViewController: UIViewController {
     private lazy var qrView: QRInfoView = {
         let view = QRInfoView(qrPadding: 64)
         view.qrLinkInfo.customLink = "https://epay.homebank.kz/myLoanApplications"
-        view.text = NSLocalizedString(
-            Constants.Localizable.myApplicationsQRDescription,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        view.text = String(
+            Constants.Localizable.myApplicationsQRDescription
+        ).localized()
         return view
     }()
     
@@ -29,12 +26,9 @@ class QRPopupViewController: UIViewController {
         button.layer.borderColor = UIColor.mainColor.cgColor
         button.setAttributedTitle(
             NSAttributedString(
-                string: NSLocalizedString(
-                    Constants.Localizable.close,
-                    tableName: Constants.Localizable.tableName,
-                    bundle: Bundle.module,
-                    comment: ""
-                ),
+                string: String(
+                    Constants.Localizable.close
+                ).localized(),
                 attributes: [
                     NSAttributedString.Key.foregroundColor : UIColor.mainColor,
                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)

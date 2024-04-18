@@ -68,6 +68,8 @@ open class PaymentModel {
         self.invoice = invoice
         self.homeBankInstalled = homeBankInstalled
     
+        //@Dos added language change
+        Bundle.setLanguage(lang: invoice.langApp ?? "ru")
     }
     
     // MARK: - Public methods
@@ -166,7 +168,6 @@ open class PaymentModel {
 
     public func makePayment(completion: @escaping (Bool) -> ()) {
         let token = self.tokenResponseBody.access_token
-        print(saveCard)
         let body = PaymentRequestBody(amount: invoice.amount,
                                       currency: invoice.currency,
                                       name: name,

@@ -31,7 +31,6 @@ public struct Invoice {
     var phone: String?
     var cardSave: Bool?
     var langApp: String?
-    var lang3D: String?
 
     public init(
         id: String,
@@ -52,8 +51,7 @@ public struct Invoice {
         email: String? = nil,
         phone: String? = nil,
         cardSave: Bool? = nil,
-        langApp: String? = nil,
-        lang3D: String? = nil
+        langApp: String? = nil
     ) {
         self.id = id
         self.amount = amount
@@ -74,7 +72,6 @@ public struct Invoice {
         self.phone = phone
         self.cardSave = cardSave
         self.langApp = langApp
-        self.lang3D = lang3D
     }
 }
 

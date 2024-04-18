@@ -60,7 +60,7 @@ class FailureViewController: UIViewController {
     
     private lazy var invoiceIdLabel: UILabel = {
         let l = UILabel()
-        l.text = NSLocalizedString(Constants.Localizable.invoiceId, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: "") + paymentModel.invoice.id
+        l.text = String(Constants.Localizable.invoiceId).localized() + paymentModel.invoice.id
         l.textAlignment = .center
         l.font = UIFont.systemFont(ofSize: 14)
         return l
@@ -70,7 +70,7 @@ class FailureViewController: UIViewController {
         let b = UIButton()
         b.layer.cornerRadius = 3
         b.layer.borderWidth = 1
-        b.setAttributedTitle(NSAttributedString(string: NSLocalizedString(Constants.Localizable.close, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: ""),
+        b.setAttributedTitle(NSAttributedString(string: String(Constants.Localizable.close).localized(),
                                                 attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]),
                              for: .normal)
         b.addTarget(self, action: #selector(closeButtonDidPressed), for: .touchUpInside)
@@ -82,7 +82,7 @@ class FailureViewController: UIViewController {
         b.layer.cornerRadius = 3
         b.layer.borderWidth = 1
         let title =  self.failType == .token ? Constants.Localizable.tryAgain : Constants.Localizable.backToEpayForm
-        b.setAttributedTitle(NSAttributedString(string: NSLocalizedString(title, tableName: Constants.Localizable.tableName, bundle: Bundle.module, comment: ""),
+        b.setAttributedTitle(NSAttributedString(string: String(title).localized(),
                                                 attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]),
                              for: .normal)
         b.addTarget(self, action: #selector(backToPaymentAndTryAgainButtonDidPressed), for: .touchUpInside)
@@ -181,12 +181,7 @@ class FailureViewController: UIViewController {
     }
 
     private func localized(by key: String) -> String {
-        return NSLocalizedString(
-            key,
-            tableName: Constants.Localizable.tableName,
-            bundle: Bundle.module,
-            comment: ""
-        )
+        return String(key).localized()
     }
 
     private func setCustomStyle() {
