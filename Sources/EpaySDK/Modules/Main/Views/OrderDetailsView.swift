@@ -88,6 +88,12 @@ class OrderDetailsView: UITableViewHeaderFooterView {
 
     func set(description: String) {
         descriptionLabel.text = description
+        
+        //@Dos added break line
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.lineBreakMode = .byWordWrapping
+        descriptionLabel.textAlignment = .center
+        descriptionLabel.sizeToFit()
     }
 
     func set(merchant: String) {
@@ -148,11 +154,16 @@ class OrderDetailsView: UITableViewHeaderFooterView {
         layoutConstraints += [additionalInfoView.heightAnchor.constraint(equalToConstant: 72)]
 
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         layoutConstraints += [
             descriptionLabel.topAnchor.constraint(equalTo: additionalInfoView.topAnchor),
             descriptionLabel.centerXAnchor.constraint(equalTo: additionalInfoView.centerXAnchor),
-            descriptionLabel.heightAnchor.constraint(equalToConstant: 16)
+            descriptionLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 16),
+            //@Dos added break line
+            descriptionLabel.leadingAnchor.constraint(equalTo: additionalInfoView.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: additionalInfoView.trailingAnchor)
         ]
+        
 
         commissionLabel.translatesAutoresizingMaskIntoConstraints = false
         layoutConstraints += [
@@ -201,6 +212,7 @@ class OrderDetailsView: UITableViewHeaderFooterView {
         ]
 
         NSLayoutConstraint.activate(layoutConstraints)
+        
     }
 
     private func stylize() {

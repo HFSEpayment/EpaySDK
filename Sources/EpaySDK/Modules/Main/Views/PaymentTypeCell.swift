@@ -44,7 +44,7 @@ class PaymentTypeCell: UICollectionViewCell {
         let image = UIImage(named: name, in: Bundle.module, compatibleWith: nil)
         imageView.image = image?.withRenderingMode(.alwaysTemplate)
     }
-
+    
     func setColor(scheme: PublicProfileResponseBody.Assets.ColorScheme?) {
         let color = scheme?.buttonsColor?.withAlphaComponent(isSelected ? 1 : 0.3)
         imageView.tintColor = color
