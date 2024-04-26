@@ -54,28 +54,30 @@ class PaymentTypesView: UIView {
     }
 
     private func setLayoutConstraints() {
+
         let rowsCount = paymentTypes.count % 2 == 0 ? paymentTypes.count / 2 : (paymentTypes.count + 1) / 2
         let collectionViewHeight = CGFloat(rowsCount * 44 + (rowsCount - 1) * 10)
 
-        titleLabel.anchor(top: topAnchor, paddingTop: 8, centerX: centerXAnchor)
-
-        leftLineView.anchor(
-            right: titleLabel.leftAnchor,
-            left: leftAnchor,
-            paddingRight: 10,
-            paddingLeft: 24,
-            height: 1,
-            centerY: titleLabel.centerYAnchor
-        )
-
-        rightLineView.anchor(
-            right: rightAnchor,
-            left: titleLabel.rightAnchor,
-            paddingRight: 24,
-            paddingLeft: 10,
-            height: 1,
-            centerY: titleLabel.centerYAnchor
-        )
+        //@Dos turn off line payment
+//        titleLabel.anchor(top: topAnchor, paddingTop: 8, centerX: centerXAnchor)
+//
+//        leftLineView.anchor(
+//            right: titleLabel.leftAnchor,
+//            left: leftAnchor,
+//            paddingRight: 10,
+//            paddingLeft: 24,
+//            height: 1,
+//            centerY: titleLabel.centerYAnchor
+//        )
+//
+//        rightLineView.anchor(
+//            right: rightAnchor,
+//            left: titleLabel.rightAnchor,
+//            paddingRight: 24,
+//            paddingLeft: 10,
+//            height: 1,
+//            centerY: titleLabel.centerYAnchor
+//        )
 
         collectionView.anchor(
             top: titleLabel.bottomAnchor,
@@ -143,6 +145,9 @@ extension PaymentTypesView: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        return CGSize(width: (collectionView.frame.width - 8) / 2, height: 44)
+        
+        //@Dos added 3 lines block instead 2
+        // CGSize(width: (collectionView.frame.width - 8) / 2, height: 44)
+        return CGSize(width: (collectionView.frame.width - 250), height: 44)
     }
 }
