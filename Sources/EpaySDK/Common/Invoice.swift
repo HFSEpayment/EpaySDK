@@ -18,7 +18,9 @@ public struct Invoice {
     var accountId: String
     var description: String
     var postLink: String
+    var backLink: String?
     var failurePostLink: String
+    var failureBackLink: String?
     var isRecurrent: Bool
     var autoPaymentFrequency: AutoPaymentFrequency
     let transferType: TransferType?
@@ -39,7 +41,9 @@ public struct Invoice {
         accountId: String,
         description: String,
         postLink: String,
+        backLink: String? = nil,
         failurePostLink: String,
+        failureBackLink: String? = nil,
         isRecurrent: Bool,
         autoPaymentFrequency: AutoPaymentFrequency,
         transferType: TransferType? = nil,
@@ -59,7 +63,9 @@ public struct Invoice {
         self.accountId = accountId
         self.description = description
         self.postLink = postLink
+        self.backLink = backLink
         self.failurePostLink = failurePostLink
+        self.failureBackLink = failureBackLink
         self.isRecurrent = isRecurrent
         self.autoPaymentFrequency = autoPaymentFrequency
         self.transferType = transferType
