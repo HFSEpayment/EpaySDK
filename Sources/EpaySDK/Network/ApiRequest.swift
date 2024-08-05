@@ -130,6 +130,13 @@ struct ApiRequest {
         if let applePayToken = body.applePayToken {
             params["applePay"] = applePayToken
         }
+        if let backLink = body.backLink {
+            params["backLink"] = backLink
+        }
+        if let failureBackLink = body.failureBackLink {
+            params["failureBackLink"] = failureBackLink
+        }
+        
         if let masterpass = body.masterpass {
             var masterPassAction: [String: Any] = [
                 "SaveCard": body.cardSave,

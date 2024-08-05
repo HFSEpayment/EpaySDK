@@ -22,7 +22,9 @@ struct PaymentRequestBody {
     let email: String?
     let phone: String?
     let postLink: String
+    let backLink: String?
     let failurePostLink: String
+    let failureBackLink: String?
     var language: String?
     let useGoBonus: Bool
     let cardSave: Bool
@@ -45,7 +47,9 @@ struct PaymentRequestBody {
          email: String? = nil,
          phone: String? = nil,
          postLink: String,
+         backLink: String? = nil,
          failurePostLink: String,
+         failureBackLink: String? = nil,
          useGoBonus: Bool,
          cardSave: Bool,
          not3d: Bool? = nil,
@@ -66,7 +70,9 @@ struct PaymentRequestBody {
         self.email = email
         self.phone = phone
         self.postLink = postLink
+        self.backLink = backLink
         self.failurePostLink = failurePostLink
+        self.failureBackLink = failureBackLink
         self.useGoBonus = useGoBonus
         self.cardSave = cardSave
         self.not3d = not3d
