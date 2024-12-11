@@ -155,14 +155,20 @@ struct ApiRequest {
             params["masterpass"] = masterPassBody
         }
 
-        let body = try! JSONSerialization.data(withJSONObject: params, options: [])
+        //@Dos changed variable name from body to convert
+        let convert = try! JSONSerialization.data(withJSONObject: params, options: [])
         var headers: [String: String] = ["Content-Type": "application/json", "Authorization": "Bearer \(accessToken)"]
 
         if let homebankToken = homebankToken {
             headers["x-homebank-auth"] = "Bearer " + homebankToken
         }
         
-        openUrlSessionWith(urlString: urlString, httpMethod: .post, headers: headers, httpBody: body) { (data, error) in
+        //@Dos added additional header
+        if let applePayToken = body.applePayToken {
+            headers["Self-Cert"] = "true"
+        }
+        
+        openUrlSessionWith(urlString: urlString, httpMethod: .post, headers: headers, httpBody: convert) { (data, error) in
             if let data = data, error == nil {
                 do {
                     let res = try JSONDecoder().decode(PaymentResponseBody.self, from: data)
