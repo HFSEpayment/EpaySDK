@@ -191,6 +191,11 @@ class SuccessViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //@Dos added for some merchant autoRedirect
+        if paymentModel.invoice.autoRedirect == true {
+            closeButtonDidPressed()
+        }
+        
         self.navigationItem.setHidesBackButton(true, animated: false)
         
         self.navigationController?.navigationBar.barTintColor = UIColor.white
@@ -250,7 +255,9 @@ class SuccessViewController: UIViewController {
         if isReccurantPaymentAvailable {
             stackView.addArrangedSubview(subscribeButton)
         }
+        
         stackView.addArrangedSubview(closeButton)
+        
     }
     
     private func setupConstraints() {
