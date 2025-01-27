@@ -164,9 +164,9 @@ struct ApiRequest {
         }
         
         //@Dos added additional header
-        if let applePayToken = body.applePayToken {
-            headers["Self-Cert"] = "true"
-        }
+//        if let applePayToken = body.applePayToken {
+//            headers["Self-Cert"] = "true"
+//        }
         
         openUrlSessionWith(urlString: urlString, httpMethod: .post, headers: headers, httpBody: convert) { (data, error) in
             if let data = data, error == nil {
