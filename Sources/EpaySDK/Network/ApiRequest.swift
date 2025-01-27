@@ -157,7 +157,7 @@ struct ApiRequest {
 
         //@Dos changed variable name from body to convert
         let convert = try! JSONSerialization.data(withJSONObject: params, options: [])
-        var headers: [String: String] = ["Content-Type": "application/json", "Authorization": "Bearer \(accessToken)"]
+        var headers: [String: String] = ["Content-Type": "application/json", "Authorization": "Bearer \(accessToken)", "Platform": "SDK IOS"]
 
         if let homebankToken = homebankToken {
             headers["x-homebank-auth"] = "Bearer " + homebankToken
