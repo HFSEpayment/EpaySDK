@@ -15,17 +15,22 @@ let package = Package(
             name: "EpaySDK",
             targets: ["EpaySDK"]
         ),
-    ],
-    dependencies: [
-        .package(
-            url: "https://github.com/getbouncer/cardscan-ios.git", 
-            from: "2.1.2"
+        .library(
+            name: "CardScan",
+            targets: ["CardScan"]
         )
     ],
+    dependencies: [],
     targets: [
+        .binaryTarget(
+            name: "CardScan",
+            path: "StaticFrameworks/CardScan/CardScan.xcframework"
+        ),
         .target(
             name: "EpaySDK",
-            dependencies: [.product(name: "CardScan", package: "cardscan-ios")],
+            dependencies: [
+                .byName(name: "CardScan")
+            ],
             resources: [
                 .process("Resources")
             ]
