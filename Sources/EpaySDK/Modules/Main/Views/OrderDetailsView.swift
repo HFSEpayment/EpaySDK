@@ -30,6 +30,10 @@ class OrderDetailsView: UITableViewHeaderFooterView {
     private let moreInfoView = UIView()
     private let arrayImageView = UIImageView()
     private let moreLabel = UILabel()
+    
+    var offSize: CGFloat = 0
+
+    var invoice: Invoice?
 
     var colorScheme: PublicProfileResponseBody.Assets.ColorScheme? {
         didSet { setCustomStyles() }
@@ -58,7 +62,6 @@ class OrderDetailsView: UITableViewHeaderFooterView {
         super.init(reuseIdentifier: reuseIdentifier)
 
         addSubviews()
-        setLayoutConstraints()
         stylize()
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(moreInfoViewTapped))
@@ -66,6 +69,12 @@ class OrderDetailsView: UITableViewHeaderFooterView {
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    
+    //@Dos added method configure
+    func configure(invoice: Invoice) {
+        self.invoice = invoice
+        setLayoutConstraints()
+    }
 
     func set(logoImage: UIImage?) {
         let defaultImage = UIImage(named: Constants.Images.logo, in: Bundle.module, compatibleWith: nil)
@@ -121,7 +130,13 @@ class OrderDetailsView: UITableViewHeaderFooterView {
 
     private func setLayoutConstraints() {
         var layoutConstraints = [NSLayoutConstraint]()
+        
+        //@Dos cardVerification
+        var sizeCardCondition = CGFloat(invoice?.cardVerification != true ? 16 : 55)
+        var sizeCardConditionMoreInfo = CGFloat(invoice?.cardVerification != true ? 72 : 30)
+        var sizeCardConditionAmount = CGFloat(invoice?.cardVerification != true ? 44 : 0)
 
+        
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         layoutConstraints += [
             logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: 40),
@@ -139,7 +154,7 @@ class OrderDetailsView: UITableViewHeaderFooterView {
         layoutConstraints += [
             priceLabel.topAnchor.constraint(equalTo: orderNumberLabel.bottomAnchor, constant: 4),
             priceLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            priceLabel.heightAnchor.constraint(equalToConstant: 44)
+            priceLabel.heightAnchor.constraint(equalToConstant: sizeCardConditionAmount)
         ]
 
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -151,7 +166,7 @@ class OrderDetailsView: UITableViewHeaderFooterView {
         ]
 
         additionalInfoView.translatesAutoresizingMaskIntoConstraints = false
-        layoutConstraints += [additionalInfoView.heightAnchor.constraint(equalToConstant: 72)]
+        layoutConstraints += [additionalInfoView.heightAnchor.constraint(equalToConstant: sizeCardConditionMoreInfo)]
 
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -164,33 +179,36 @@ class OrderDetailsView: UITableViewHeaderFooterView {
             descriptionLabel.trailingAnchor.constraint(equalTo: additionalInfoView.trailingAnchor)
         ]
         
+        //@Dos cardVerification
+        if (invoice?.cardVerification != true) {
+            commissionLabel.translatesAutoresizingMaskIntoConstraints = false
+            layoutConstraints += [
+                commissionLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
+                commissionLabel.rightAnchor.constraint(equalTo: additionalInfoView.centerXAnchor, constant: -8),
+                commissionLabel.heightAnchor.constraint(equalToConstant: 16)
+            ]
+            
+            commissionValueLabel.translatesAutoresizingMaskIntoConstraints = false
+            layoutConstraints += [
+                commissionValueLabel.topAnchor.constraint(equalTo: commissionLabel.topAnchor),
+                commissionValueLabel.leftAnchor.constraint(equalTo: additionalInfoView.centerXAnchor, constant: 8),
+                commissionValueLabel.heightAnchor.constraint(equalToConstant: 16)
+            ]
+        }
 
-        commissionLabel.translatesAutoresizingMaskIntoConstraints = false
-        layoutConstraints += [
-            commissionLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
-            commissionLabel.rightAnchor.constraint(equalTo: additionalInfoView.centerXAnchor, constant: -8),
-            commissionLabel.heightAnchor.constraint(equalToConstant: 16)
-        ]
-
-        commissionValueLabel.translatesAutoresizingMaskIntoConstraints = false
-        layoutConstraints += [
-            commissionValueLabel.topAnchor.constraint(equalTo: commissionLabel.topAnchor),
-            commissionValueLabel.leftAnchor.constraint(equalTo: additionalInfoView.centerXAnchor, constant: 8),
-            commissionValueLabel.heightAnchor.constraint(equalToConstant: 16)
-        ]
-
+                
         merchantLabel.translatesAutoresizingMaskIntoConstraints = false
         layoutConstraints += [
             merchantLabel.topAnchor.constraint(equalTo: commissionLabel.bottomAnchor, constant: 8),
             merchantLabel.rightAnchor.constraint(equalTo: additionalInfoView.centerXAnchor, constant: -8),
-            merchantLabel.heightAnchor.constraint(equalToConstant: 16)
+            merchantLabel.heightAnchor.constraint(equalToConstant: sizeCardCondition)
         ]
 
         merchantValueLabel.translatesAutoresizingMaskIntoConstraints = false
         layoutConstraints += [
             merchantValueLabel.topAnchor.constraint(equalTo: merchantLabel.topAnchor),
             merchantValueLabel.leftAnchor.constraint(equalTo: additionalInfoView.centerXAnchor, constant: 8),
-            merchantValueLabel.heightAnchor.constraint(equalToConstant: 16)
+            merchantValueLabel.heightAnchor.constraint(equalToConstant: sizeCardCondition)
         ]
 
         moreInfoView.translatesAutoresizingMaskIntoConstraints = false

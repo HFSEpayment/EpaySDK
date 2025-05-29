@@ -34,6 +34,8 @@ public struct Invoice {
     var cardSave: Bool?
     var langApp: String?
     var autoRedirect: Bool?
+    var cardVerification: Bool?
+    var selfCert: Bool?
 
     public init(
         id: String,
@@ -57,7 +59,9 @@ public struct Invoice {
         phone: String? = nil,
         cardSave: Bool? = nil,
         langApp: String? = nil,
-        autoRedirect: Bool? = nil
+        autoRedirect: Bool? = nil,
+        cardVerification: Bool? = nil,
+        selfCert: Bool? = nil
     ) {
         self.id = id
         self.amount = amount
@@ -81,6 +85,8 @@ public struct Invoice {
         self.cardSave = cardSave
         self.langApp = langApp
         self.autoRedirect = autoRedirect
+        self.cardVerification = cardVerification
+        self.selfCert = selfCert
     }
 }
 

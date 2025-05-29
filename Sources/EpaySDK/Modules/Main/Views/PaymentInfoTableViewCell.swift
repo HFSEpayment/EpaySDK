@@ -14,6 +14,13 @@ class PaymentInfoTableViewCell: UITableViewCell {
     
     static let cellId = "paymentInfoTableViewCellId"
     
+    //@Dos CardVerification
+    var cardVerificationCustom: Bool? {
+        didSet {
+            creditCardPaymentView.cardVerificationCustom = cardVerificationCustom
+        }
+    }
+    
     var amount: Double? {
         didSet {
             creditCardPaymentView.amount = amount
