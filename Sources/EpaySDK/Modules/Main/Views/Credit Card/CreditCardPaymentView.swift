@@ -17,16 +17,22 @@ class CreditCardPaymentView: UIView {
     private let saveDataOptionView = UIView()
     private let switcher = UISwitch()
     private let descriptionLabel = UILabel()
+    var cardVerificationCustom: Bool?
+
     var amount: Double? {
         didSet {
             if let amount = amount {
+                
+                let titleText: String
+                if cardVerificationCustom == true {
+                    titleText =  String("Сохранить карту").localized()
+                } else {
+                    titleText = String(Constants.Localizable.payAmount).localized() + " " + String(amount) + " KZT"
+                }
+                
                 payButton.setAttributedTitle(
                     NSAttributedString(
-                        string:
-                            String(
-                                Constants.Localizable.payAmount
-                            ).localized() + " " + String(amount) + " KZT",
-                                                                
+                        string: titleText,
                         attributes: [
                             NSAttributedString.Key.foregroundColor : colorScheme?.bgGradientParams.color1 ?? UIColor.white,
                             NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)
@@ -92,8 +98,18 @@ class CreditCardPaymentView: UIView {
     private lazy var contactInfoView = ContactInfoView()
     
     func preEmailandPhone (invoice: Invoice?) {
-        contactInfoView.emailTextField.text = invoice?.email
-        contactInfoView.phoneTextField.text = invoice?.phone
+    
+        //@Dos cardVerification
+        if invoice?.cardVerification == true {
+            contactInfoView.emailTextField.isHidden = true
+            contactInfoView.phoneTextField.isHidden = true
+            contactInfoView.cardVerificationText.isHidden = false
+        } else {
+            contactInfoView.emailTextField.text = invoice?.email
+            contactInfoView.phoneTextField.text = invoice?.phone
+            contactInfoView.cardVerificationText.isHidden = true
+        }
+        
     }
     
     private lazy var payButton: UIButton = {

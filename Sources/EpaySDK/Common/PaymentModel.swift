@@ -168,6 +168,18 @@ open class PaymentModel {
 
     public func makePayment(completion: @escaping (Bool) -> ()) {
         let token = self.tokenResponseBody.access_token
+        
+        var paymentType: String?
+        if isMasterPass == false {
+            if invoice.cardVerification == true {
+                paymentType = "cardVerification"
+            } else {
+                paymentType = nil
+            }
+        } else {
+            paymentType = "masterPass"
+        }
+    
         let body = PaymentRequestBody(amount: invoice.amount,
                                       currency: invoice.currency,
                                       name: name,
@@ -183,8 +195,9 @@ open class PaymentModel {
                                       failureBackLink: invoice.failureBackLink,
                                       useGoBonus: useGoBonus,
                                       cardSave: saveCard ?? false,
-                                      paymentType: isMasterPass == false ? nil : "masterPass",
-                                      masterpass: isMasterPass == false ? nil : invoice.masterPass
+                                      paymentType: paymentType,
+                                      masterpass: isMasterPass == false ? nil : invoice.masterPass,
+                                      selfCert: invoice.selfCert
                                       
         )
         

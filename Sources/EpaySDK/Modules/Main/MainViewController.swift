@@ -298,6 +298,8 @@ extension MainViewController: UITableViewDataSource {
         cell.colorScheme = paymentModel.publicProfile?.assets?.color_scheme
         cell.publicProfile = paymentModel.publicProfile?.assets
         cell.paymentTag = 0
+        //@Dos cardVerification
+        cell.cardVerificationCustom = paymentModel.invoice.cardVerification
         cell.amount = paymentModel.invoice.amount
         cell.showQR = !isHomebankInstalled
         cell.paymentType = selectedPaymentType
@@ -321,6 +323,10 @@ extension MainViewController: UITableViewDataSource {
         
         if (paymentModel.invoice.email != nil) || (paymentModel.invoice.phone != nil){
             cell.preEmailandPhone(invoice: paymentModel.invoice)
+            
+            //@Dos cardVerification
+        } else if (paymentModel.invoice.cardVerification == true) {
+            cell.preEmailandPhone(invoice: paymentModel.invoice)
         }
         
         return cell
@@ -330,16 +336,31 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard section == 0 else { return paymentTypesView }
+        guard section == 0 else {
+            //@Dos cardVerification
+            if (paymentModel.invoice.cardVerification == true) {
+                return nil
+            } else {
+                return paymentTypesView
+            }
+        }
 
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerId) as? OrderDetailsView
+        //@Dos cardVerification
+        header?.configure(invoice: paymentModel.invoice)
+        
         header?.colorScheme = paymentModel.publicProfile?.assets?.color_scheme
         header?.isAdditionalInfoEnabled = paymentViewSettings?.additionalInfo == true
         header?.isAdditionalInfoViewHidden = additionalInfoViewHidden
         header?.delegate = self
         header?.set(logoImage: paymentModel.logoImage)
         header?.set(orderNumber: paymentModel.invoice.id)
-        header?.set(amount: paymentModel.invoice.amount)
+        
+        //@Dos cardVerification
+        if paymentModel.invoice.cardVerification != true {
+            header?.set(amount: paymentModel.invoice.amount)
+        }
+        
         header?.set(description: paymentModel.invoice.description)
         header?.set(merchant: paymentModel.authConfig.merchantName)
         return header

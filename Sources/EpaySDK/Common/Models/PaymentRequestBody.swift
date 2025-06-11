@@ -34,6 +34,7 @@ struct PaymentRequestBody {
     let terminalId: String?
     let applePayToken: [String: Any]?
     let masterpass: MasterPassData?
+    let selfCert: Bool?
 
     // MARK: - Initializers
     
@@ -58,7 +59,8 @@ struct PaymentRequestBody {
          terminalId: String? = nil,
          applePayToken: [String: Any]? = nil,
          masterpass: MasterPassData? = nil,
-         language: String? = nil
+         language: String? = nil,
+         selfCert: Bool? = nil
     ) {
         self.amount = amount
         self.currency = currency
@@ -82,5 +84,6 @@ struct PaymentRequestBody {
         self.applePayToken = applePayToken
         self.masterpass = masterpass
         self.language = language
+        self.selfCert = selfCert
     }
 }

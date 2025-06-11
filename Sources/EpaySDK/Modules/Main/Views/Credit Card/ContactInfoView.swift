@@ -18,7 +18,18 @@ class ContactInfoView: UIView {
         }
     }
     
-    // MARK: - UI Elements
+    //@Dos cardVerification
+    public lazy var cardVerificationText: UILabel = {
+        let v = UILabel()
+        v.font = .systemFont(ofSize: 14, weight: .medium)
+        v.textColor = UIColor.black
+        v.numberOfLines = 0
+        v.lineBreakMode = .byWordWrapping
+        v.textAlignment = .center
+        v.text = "Для сохранения карты будет произведена\n проверка ее действительности наличие средств\n на карте не требуется."
+        v.isHidden = true
+        return v
+    }()
     
     public lazy var emailTextField: SkyFloatingLabelTextField = {
         let v = SkyFloatingLabelTextField()
@@ -99,12 +110,18 @@ class ContactInfoView: UIView {
     }
     
     func isValid() -> Bool {
-        return isValidEmail(emailTextField.text!) && isValidPhone(phoneTextField.text!)
+        if (cardVerificationText.isHidden == false) {
+            return true
+        } else {
+            return isValidEmail(emailTextField.text!) && isValidPhone(phoneTextField.text!)
+        }
     }
     
     // MARK: - Private methods
 
     private func setupViews() {
+        //@Dos cardVerification
+        addSubview(cardVerificationText)
         addSubview(emailTextField)
         addSubview(phoneTextField)
     }
@@ -121,6 +138,8 @@ class ContactInfoView: UIView {
     }
     
     private func setupConstraints() {
+        //@Dos cardVerification
+        cardVerificationText.anchor(top: topAnchor, right: rightAnchor, left: leftAnchor, paddingTop: 24,paddingBottom: 12)
         emailTextField.anchor(top: topAnchor, right: rightAnchor, left: leftAnchor, bottom: phoneTextField.topAnchor, paddingTop: 24,paddingBottom: 12, height: 42)
         phoneTextField.anchor(top: emailTextField.bottomAnchor, right: rightAnchor, left: leftAnchor, bottom: bottomAnchor, paddingTop: 24, height: 42)
     }
