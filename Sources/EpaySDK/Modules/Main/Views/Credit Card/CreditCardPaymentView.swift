@@ -286,7 +286,7 @@ class CreditCardPaymentView: UIView {
         let phone = contactInfoView.phoneTextField.text
         let pan = creditCardView.cardNumberTextField.text!.replacingOccurrences(of: " ", with: "")
         let expDate = creditCardView.monthTextField.text! + creditCardView.yearTextField.text!
-        let cvc = (Int(creditCardView.cvvTextField.text!))!
+        let cvc = creditCardView.cvvTextField.text!
         let useGoBonus = bonusView.shouldUseGoBonus()
         let saveCard = switcher.isOn
         delegate?.makePayment(pan: pan, expDate: expDate, cvc: cvc, name: name, email: email, phone: phone, useGoBonus: useGoBonus, isMasterPass: isMasterPass, saveCard: saveCard)
