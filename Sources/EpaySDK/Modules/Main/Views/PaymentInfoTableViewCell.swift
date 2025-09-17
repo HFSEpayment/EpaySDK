@@ -192,7 +192,7 @@ extension PaymentInfoTableViewCell: PaymentViewDelegate {
         delegate?.popMainViewController()
     }
     
-    func makePayment(pan: String, expDate: String, cvc: Int, name: String?, email: String?, phone: String?, useGoBonus: Bool, isMasterPass: Bool?, saveCard: Bool?) {
+    func makePayment(pan: String, expDate: String, cvc: String, name: String?, email: String?, phone: String?, useGoBonus: Bool, isMasterPass: Bool?, saveCard: Bool?) {
         delegate?.makePayment(pan: pan, expDate: expDate, cvc: cvc, name: name, email: email, phone: phone, useGoBonus: useGoBonus, isMasterPass: isMasterPass, saveCard: saveCard)
     }
     

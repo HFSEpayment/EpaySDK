@@ -11,7 +11,7 @@ import UIKit
 
 protocol PaymentInfoTableViewCellDelegate: class {
     func showAlert(title: String, message: String, actionTitle: String)
-    func makePayment(pan: String, expDate: String, cvc: Int, name: String?, email: String?, phone: String?, useGoBonus: Bool, isMasterPass: Bool?, saveCard: Bool?)
+    func makePayment(pan: String, expDate: String, cvc: String, name: String?, email: String?, phone: String?, useGoBonus: Bool, isMasterPass: Bool?, saveCard: Bool?)
     func scanCard()
     func popMainViewController()
     func updateTableView()

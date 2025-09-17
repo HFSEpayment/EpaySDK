@@ -425,7 +425,7 @@ extension MainViewController: PaymentInfoTableViewCellDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func makePayment(pan: String, expDate: String, cvc: Int, name: String?, email: String?, phone: String?, useGoBonus: Bool, isMasterPass: Bool?, saveCard: Bool?) {
+    func makePayment(pan: String, expDate: String, cvc: String, name: String?, email: String?, phone: String?, useGoBonus: Bool, isMasterPass: Bool?, saveCard: Bool?) {
         var cryptogram = RSA.encrypt(string: "{\"hpan\":\"\(pan)\",\"expDate\":\"\(expDate)\",\"cvc\":\"\(cvc)\",\"terminalId\":\"\(paymentModel.authConfig.merchantId)\"}", publicKey: paymentModel.publicKey) ?? ""
         if isMasterPass == true {
             cryptogram = RSA.encrypt(string: "{\"hpan\":\"\",\"expDate\":\"\(expDate)\",\"cvc\":\"\(cvc)\",\"terminalId\":\"\(paymentModel.authConfig.merchantId)\"}", publicKey: paymentModel.publicKey) ?? ""
