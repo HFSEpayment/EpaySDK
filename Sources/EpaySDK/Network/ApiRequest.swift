@@ -165,7 +165,6 @@ struct ApiRequest {
         
         //@Dos added additional header
         if let applePayToken = body.applePayToken {
-            print(body.selfCert)
             headers["Self-Cert"] = body.selfCert == true ? "true" : "false"
         }
         
