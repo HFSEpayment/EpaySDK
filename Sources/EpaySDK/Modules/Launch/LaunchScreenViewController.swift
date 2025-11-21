@@ -108,6 +108,8 @@ public class LaunchScreenViewController: UIViewController {
     private func getData() {
         let pushMainViewController = {
             DispatchQueue.main.async {
+                // SuccessViewController
+                // FailureViewController
                 let vc = MainViewController(
                     paymentModel: self.paymentModel!,
                     isHomebankInstalled: self.isHomebankInstalled

@@ -42,8 +42,8 @@ struct Constants {
                     homeBankDeepLink = "kz.homebank.mobile"
                 default:
                     publicKey = "MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAqoATnGMtByQojuoYFKExvEqszShV2vk6chCJFx0/vmSHBqcCTazhJqBmYU9gyM/TjVWLsjFAbd4nvCxIGpqFg3J7UJccfODKibyfSUSqGsAJE1MJh3EaJivkd85/FkZkv3zBeT/193NmakNs0+T+PUMmSdAPSnfUWi2KSIp48mSA38CbMvOwndkKNEeqCoIQn/fApfZ8MWIEFVd3gpfsVe0zYhSjvTOHPD0/7TOdcQyArxLZY0yS7m32rUOibuO7EhGNQL/bC73ZbuS5nXhra03nNIW3FfSJUTJBjVWDZRoNk9gm4pOimAeb0IiqnmlTPOvkqHYsOEjQ8KJAFlGO1igelk1+dA5ZiY6r0YExc1KnW7UsnGk6nr7cgOR2po/sa4kctiKLqlGA35ILmUBQYb6iReCQkggXMOvmP6p+4wEt1B7V8UJxzFZcQZ5QSRIk3o3pVrfY0gksidl0Xt5mft+E6a77ZQKG4TOQS9Ly1mIJ2qqaWqCWglVMWFiFCx9dXTN0RMli1T0rs1gA2jsPz2/HiyY8EUp6t4Ufc8VbJYG9vt24UTwYgu+qDEBjggm5YKVCxjCvhJWwh9LaL9UuK46Apgr5wgEyMIJZRO7RxkjKkJI29FAP3wEs9y+/3qsjH3chFzdX0/+6lA+9lePKPX0Z5SPexWRiQp9bND4iZRcCAwEAAQ=="
-                    auth = "https://testoauth.homebank.kz/epay2"
-                    base = "https://testepay.homebank.kz/api"
+                    auth = "https://test-epay-oauth.epayment.kz"
+                    base = "https://test-epay-api.epayment.kz"
                     homeBankDeepLink = "kz.homebank.mobile.dev"
                 }
             }
