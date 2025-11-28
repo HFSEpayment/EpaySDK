@@ -233,7 +233,8 @@ open class PaymentModel {
             cardSave: false,
             paymentType: "applePay",
             terminalId: authConfig.merchantId,
-            applePayToken: applePayToken
+            applePayToken: applePayToken,
+            selfCert: invoice.selfCert
         )
         apiRequest.makePayment(accessToken: token, body: body) { (body, error) in
             if let body = body, error == nil {
