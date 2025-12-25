@@ -50,7 +50,8 @@ open class PaymentModel {
     var orderStatus: OrderStatusResponseBody!
     var publicProfile: PublicProfileResponseBody?
     var qrStatus: QRResponseBody?
-    var paymentType: PaymentType = .creditCard
+    //@Dos remove method by default
+    var paymentType: PaymentType
     var logoImage: UIImage?
     var homebankCards: [HomeBankCard] = []
     var selectedHomebankCard: HomeBankCard?
@@ -67,6 +68,8 @@ open class PaymentModel {
         self.authConfig = authConfig
         self.invoice = invoice
         self.homeBankInstalled = homeBankInstalled
+        //@Dos added condition method
+        self.paymentType = invoice.isApplePay == true ? .applePay : .creditCard
     
         //@Dos added language change
         Bundle.setLanguage(lang: invoice.langApp ?? "ru")
