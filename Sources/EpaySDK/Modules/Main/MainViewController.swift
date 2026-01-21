@@ -35,7 +35,8 @@ class MainViewController: UIViewController {
     private let headerId = String(describing: OrderDetailsView.self)
     private var additionalInfoViewHidden = true
     
-    private var selectedPaymentType: PaymentType = .creditCard {
+    //@Dos added condition for method 
+    private lazy var selectedPaymentType: PaymentType = paymentModel.invoice.isApplePay == true ? .applePay : .creditCard {
         didSet {
             paymentModel.paymentType = selectedPaymentType
             if selectedPaymentType == .applePay {
