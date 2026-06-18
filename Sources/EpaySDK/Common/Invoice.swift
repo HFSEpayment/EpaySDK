@@ -17,6 +17,7 @@ public struct Invoice {
     var currency: String
     var accountId: String
     var description: String
+    var terminal: String
     var postLink: String
     var backLink: String?
     var failurePostLink: String
@@ -44,6 +45,7 @@ public struct Invoice {
         currency: String,
         accountId: String,
         description: String,
+        terminal: String,
         postLink: String,
         backLink: String? = nil,
         failurePostLink: String,
@@ -70,6 +72,7 @@ public struct Invoice {
         self.currency = currency
         self.accountId = accountId
         self.description = description
+        self.terminal = terminal
         self.postLink = postLink
         self.backLink = backLink
         self.failurePostLink = failurePostLink

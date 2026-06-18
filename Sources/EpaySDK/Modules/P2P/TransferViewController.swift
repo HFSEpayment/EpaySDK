@@ -309,7 +309,7 @@ extension TransferViewController {
             description: paymentModel.invoice.description,
             id: paymentModel.invoice.id,
             senderEmail: email,
-            terminalId: paymentModel.authConfig.merchantId,
+            terminalId: paymentModel.invoice.terminal,
             postLink: paymentModel.invoice.postLink,
             failurePostLink: paymentModel.invoice.failurePostLink
         )
