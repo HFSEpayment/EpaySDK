@@ -136,18 +136,24 @@ public class LaunchScreenViewController: UIViewController {
             if success {
                 viewController.paymentModel.loadPublicProfile { success in
                     viewController.paymentModel.getInstallmentInfo {
+                        
+                        //@Dos turned off endpoint /getCard
                         if success {
-                            if viewController.paymentModel.isMasterPass != nil {
-                                viewController.paymentModel.getMasterPassCardData {success in
-                                    if success {
-                                        viewController.paymentModel.invoice.isTransfer ? pushTransferViewController() : pushMainViewController()
-                                    } else {
-                                        viewController.paymentModel.invoice.isTransfer ? pushTransferViewController() : pushMainViewController()
-                                    }
-                                }
-                            } else {
-                                viewController.paymentModel.invoice.isTransfer ? pushTransferViewController() : pushMainViewController()
-                            }
+//                            if viewController.paymentModel.isMasterPass != nil {
+//                                viewController.paymentModel.getMasterPassCardData {success in
+//                                    if success {
+//                                        viewController.paymentModel.invoice.isTransfer ? pushTransferViewController() : pushMainViewController()
+//                                    } else {
+//                                        viewController.paymentModel.invoice.isTransfer ? pushTransferViewController() : pushMainViewController()
+//                                    }
+//                                }
+//                            } else {
+//                                viewController.paymentModel.invoice.isTransfer ? pushTransferViewController() : pushMainViewController()
+//                            }
+                            
+                            //@Dos added from above else
+                            viewController.paymentModel.invoice.isTransfer ? pushTransferViewController() : pushMainViewController()
+                            
                         } else {
                             pushFailureViewController()
                         }

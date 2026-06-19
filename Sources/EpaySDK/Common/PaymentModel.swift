@@ -341,7 +341,9 @@ open class PaymentModel {
         apiRequest.getTerminals(token: token, id: id) { (body, error) in
             if let body = body, error == nil {
                 self.terminalsResponseBody = body
-                self.getCreditCondition(completion: completion)
+                //@Dos turned off checking credtion condtion endpoint
+                //self.getCreditCondition(completion: completion)
+                completion()
             } else {
                 completion()
             }
