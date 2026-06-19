@@ -78,36 +78,14 @@ open class PaymentModel {
     // MARK: - Public methods
     
     public func requestToken(completion: @escaping (Bool) -> ()) {
-        let body = TokenRequestBody(grantType: "client_credentials",
-                                    scope: invoice.scope,
-                                    clientId: authConfig.clientId,
-                                    clientSecret: authConfig.clientSecret,
-                                    invoiceId: invoice.id,
-                                    amount: invoice.amount,
-                                    currency: invoice.currency,
-                                    terminal: authConfig.merchantId)
-        
-        if self.authConfig.appClipToken != nil {
-            self.tokenResponseBody = TokenResponseBody(
-                access_token: self.authConfig.appClipToken!,
-                expires_in: "1200",
-                scope: "payment",
-                token_type: "Bearer"
-            )
-            completion(true)
-        } else {
-            apiRequest.requestToken(body: body) { (body, error) in
-                if let body = body, error == nil {
-                    self.tokenResponseBody = body
-                    completion(true)
-                } else {
-                    let message = error!.localizedDescription
-                    let error = ErrorResponseBody(message: message)
-                    self.errorResponseBody = error
-                    completion(false)
-                }
-            }
-        }
+        self.tokenResponseBody = TokenResponseBody(
+            access_token: authConfig.appClipToken,
+            expires_in: "1200",
+            scope: "payment",
+            token_type: "Bearer"
+        )
+
+        completion(true)
     }
 
     public func loadPublicProfile(completion: @escaping (Bool) -> ()) {
@@ -235,7 +213,7 @@ open class PaymentModel {
             useGoBonus: false,
             cardSave: false,
             paymentType: "applePay",
-            terminalId: authConfig.merchantId,
+            terminalId: invoice.terminal,
             applePayToken: applePayToken,
             selfCert: invoice.selfCert
         )
@@ -270,7 +248,7 @@ open class PaymentModel {
             not3d: false,
             paymentType: "halykId",
             osuvoxCardId: selectedHomebankCard?.systemAttributeId,
-            terminalId: authConfig.merchantId
+            terminalId: invoice.terminal
         )
 
         apiRequest.makePayment(accessToken: accessToken, homebankToken: invoice.homebankToken, body: body) { (body, error) in
@@ -359,11 +337,13 @@ open class PaymentModel {
     
     func getTerminals(completion: @escaping () -> ()) {
         let token = tokenResponseBody.access_token
-        let id = authConfig.merchantId
+        let id = invoice.terminal
         apiRequest.getTerminals(token: token, id: id) { (body, error) in
             if let body = body, error == nil {
                 self.terminalsResponseBody = body
-                self.getCreditCondition(completion: completion)
+                //@Dos turned off checking credtion condtion endpoint
+                //self.getCreditCondition(completion: completion)
+                completion()
             } else {
                 completion()
             }
@@ -406,7 +386,7 @@ open class PaymentModel {
         guard let iban = selectedHomebankCard?.cardInfo?.iban, let homebankToken = invoice.homebankToken else { return }
         apiRequest.getGoBonusBy(
             iban: iban,
-            terminalId: authConfig.merchantId,
+            terminalId: invoice.terminal,
             accessToken: tokenResponseBody.access_token,
             homebankToken: homebankToken
         ) { [weak self] body, error in

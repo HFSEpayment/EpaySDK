@@ -383,7 +383,7 @@ extension MainViewController: OrderDetailsViewDelegate {
 extension MainViewController: PaymentInfoTableViewCellDelegate {
     
     func requestGoBonus(pan: String, expDate: String, cvc: Int) {
-        let text = "{\"hpan\":\"\(pan)\",\"expDate\":\"\(expDate)\",\"cvc\":\"\(cvc)\",\"terminalId\":\"\(paymentModel.authConfig.merchantId)\"}"
+        let text = "{\"hpan\":\"\(pan)\",\"expDate\":\"\(expDate)\",\"cvc\":\"\(cvc)\",\"terminalId\":\"\(paymentModel.invoice.terminal)\"}"
         let cryptogram = RSA.encrypt(string: text, publicKey: paymentModel.publicKey)
         paymentModel.cryptogram = cryptogram
         
@@ -427,9 +427,9 @@ extension MainViewController: PaymentInfoTableViewCellDelegate {
     }
     
     func makePayment(pan: String, expDate: String, cvc: String, name: String?, email: String?, phone: String?, useGoBonus: Bool, isMasterPass: Bool?, saveCard: Bool?) {
-        var cryptogram = RSA.encrypt(string: "{\"hpan\":\"\(pan)\",\"expDate\":\"\(expDate)\",\"cvc\":\"\(cvc)\",\"terminalId\":\"\(paymentModel.authConfig.merchantId)\"}", publicKey: paymentModel.publicKey) ?? ""
+        var cryptogram = RSA.encrypt(string: "{\"hpan\":\"\(pan)\",\"expDate\":\"\(expDate)\",\"cvc\":\"\(cvc)\",\"terminalId\":\"\(paymentModel.invoice.terminal)\"}", publicKey: paymentModel.publicKey) ?? ""
         if isMasterPass == true {
-            cryptogram = RSA.encrypt(string: "{\"hpan\":\"\",\"expDate\":\"\(expDate)\",\"cvc\":\"\(cvc)\",\"terminalId\":\"\(paymentModel.authConfig.merchantId)\"}", publicKey: paymentModel.publicKey) ?? ""
+            cryptogram = RSA.encrypt(string: "{\"hpan\":\"\",\"expDate\":\"\(expDate)\",\"cvc\":\"\(cvc)\",\"terminalId\":\"\(paymentModel.invoice.terminal)\"}", publicKey: paymentModel.publicKey) ?? ""
         }
         
         paymentModel.cryptogram = cryptogram
@@ -599,7 +599,7 @@ extension MainViewController: PKPaymentAuthorizationViewControllerDelegate {
             print("dictionary", paymentData)
         }
 
-        let text = "{\"hpan\":\"AppleToken\",\"expDate\":\"expToken\",\"cvc\":\"\",\"terminalId\":\"\(paymentModel.authConfig.merchantId)\"}"
+        let text = "{\"hpan\":\"AppleToken\",\"expDate\":\"expToken\",\"cvc\":\"\",\"terminalId\":\"\(paymentModel.invoice.terminal)\"}"
         let cryptogram = RSA.encrypt(string: text, publicKey: paymentModel.publicKey)
         paymentModel.cryptogram = cryptogram
 

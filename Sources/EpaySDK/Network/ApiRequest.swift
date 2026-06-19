@@ -505,6 +505,24 @@ struct ApiRequest {
                 responseData: data,
                 error: error as NSError?
             )
+            
+            //@Dos check token
+            if let response = response as? HTTPURLResponse,
+               request.url?.absoluteString.contains("public-profile") == true,
+               response.statusCode == 400 {
+
+                completion(
+                    nil,
+                    NSError(
+                        domain: "EpaySDK",
+                        code: 401,
+                        userInfo: [
+                            NSLocalizedDescriptionKey: "Invalid access token"
+                        ]
+                    )
+                )
+                return
+            }
 
             guard let data = data, error == nil else {
                 completion(nil, error)
